@@ -1,0 +1,334 @@
+<div class="d-flex" style="min-height: 100vh; background-color: #F0F4F8;">
+
+
+  <div class="d-flex flex-column p-3"
+       style="width: 240px; background-color: #1B2A4A; min-height: 100vh; flex-shrink: 0;">
+
+    
+    <div class="text-center py-3 mb-4"
+         style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <span class="fw-bold fs-5">
+        <span style="color: #63B3ED;">Gestion</span>
+        <span class="text-white">EDT</span>
+      </span>
+      <div class="mt-1">
+        <span class="badge" style="background-color: #F6AD55; color: #1B2A4A; font-size: 11px;">
+          Admin
+        </span>
+      </div>
+    </div>
+
+ 
+    <ul class="nav flex-column gap-1 flex-grow-1">
+      <li class="nav-item">
+        <a  routerLink="/seances" routerLinkActive="active-link"  class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2 active-link">
+          <svg width="18" height="18" fill="#63B3ED" viewBox="0 0 24 24">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+          </svg>
+          <span class="text-white" style="font-size: 14px;">Séances</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/cours" routerLinkActive="active-link"  class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
+          <svg width="18" height="18" fill="rgba(255,255,255,0.5)" viewBox="0 0 24 24">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <span style="color: rgba(255,255,255,0.5); font-size: 14px;">Cours/Enseignant</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
+          <svg width="18" height="18" fill="rgba(255,255,255,0.5)" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span style="color: rgba(255,255,255,0.5); font-size: 14px;">Semaines</span>
+        </a>
+      </li>
+    </ul>
+
+    
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+      <button class="btn w-100 d-flex align-items-center gap-2 px-3 py-2"
+              style="background: rgba(255,255,255,0.05); border: none; border-radius: 8px;"
+              (click)="seDeconnecter()">
+        <svg width="18" height="18" fill="#FC8181" viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        <span style="color: #FC8181; font-size: 14px;">Déconnexion</span>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="flex-grow-1 p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h4 class="fw-bold mb-0" style="color: #1B2A4A;">Emploi du temps</h4>
+        <small class="text-muted">Gestion et programmation des séances</small>
+      </div>
+      <button class="btn fw-semibold text-white d-flex align-items-center gap-2"
+              style="background-color: #2B6CB0; border-radius: 10px; padding: 10px 20px;"
+              (click)="ouvrirModal()">
+        <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nouvelle séance
+      </button>
+    </div>
+
+<div class="card border-0 mb-4 p-3 d-flex flex-row align-items-center gap-3"
+     style="border-radius: 14px; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+
+ 
+  <div class="d-flex align-items-center gap-2">
+    <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+      <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+    </svg>
+    <span class="fw-semibold" style="color: #1B2A4A; font-size: 14px;"> Toutes Les Semaines </span>
+  </div>
+  <!-- <input
+    type="number"
+    class="form-control form-control-sm"
+    style="width: 100px; border-color: #BEE3F8; border-radius: 8px; color: #1B2A4A;"
+    placeholder="ex: 3"
+    [(ngModel)]="filtre_semaine"
+    (input)="chargerSeances()"
+    min="1"/> -->
+
+    <!--
+  <div class="d-flex align-items-center gap-2 ms-3">
+    <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+    </svg>
+    <span class="fw-semibold" style="color: #1B2A4A; font-size: 14px;">Spécialité :</span>
+  </div>
+  <input
+    type="text"
+    class="form-control form-control-sm"
+    style="width: 120px; border-color: #BEE3F8; border-radius: 8px; color: #1B2A4A;"
+    placeholder="ex: GDIL"
+    [(ngModel)]="filtre_specialite"
+    (input)="chargerSeances()"/> 
+ -->
+  <button class="btn btn-sm ms-2"
+          style="background:#F7FAFC; color:#4A5568; border-radius:8px; border: 1px solid #E2E8F0; font-size: 13px;"
+          (click)="reinitialiserFiltres()">
+    Initialiser
+  </button>
+
+
+
+
+  <div class="ms-auto">
+    <span class="badge"
+          style="background-color: #EBF8FF; color: #2B6CB0; font-size: 13px; padding: 6px 14px; border-radius: 20px;">
+      {{ seances.length }} séance(s)
+    </span>
+  </div>
+</div>
+
+   
+    <div *ngIf="seances.length === 0"
+         class="text-center py-5"
+         style="color: #A0AEC0;">
+      <svg width="48" height="48" fill="#CBD5E0" viewBox="0 0 24 24" class="mb-3">
+        <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      <p class="fw-semibold">Aucune séance trouvée</p>
+      <small>Cliquez sur "Nouvelle séance" pour en ajouter une</small>
+    </div>
+
+   
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-4"
+           *ngFor="let s of seances">
+        <div class="card border-0 h-100"
+             style="border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); overflow: hidden;">
+
+          <div class="d-flex align-items-center justify-content-between px-3 py-2"
+               [ngStyle]="{'background-color': couleurJour(s.jour)}">
+            <span class="fw-bold text-white" style="font-size: 13px;">{{ s.jour }}</span>
+            <span class="text-white" style="font-size: 12px; opacity: 0.85;">
+              {{ s.heure_debut }} - {{ s.heure_fin }}
+            </span>
+          </div>
+
+          
+          <div class="card-body p-3">
+
+           
+            <div class="d-flex align-items-start gap-2 mb-2">
+              <svg width="16" height="16" fill="#2B6CB0" viewBox="0 0 24 24" style="margin-top:2px;flex-shrink:0;">
+                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+              <div>
+                <div style="font-size: 11px; color: #A0AEC0; text-transform: uppercase; letter-spacing: 0.5px;">Cours</div>
+                <div class="fw-semibold" style="color: #1B2A4A; font-size: 14px;">{{ s.cours?.intitule }}</div>
+              </div>
+            </div>
+
+          
+            <div class="d-flex align-items-start gap-2 mb-2">
+              <svg width="16" height="16" fill="#2B6CB0" viewBox="0 0 24 24" style="margin-top:2px;flex-shrink:0;">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+              </svg>
+              <div>
+                <div style="font-size: 11px; color: #A0AEC0; text-transform: uppercase; letter-spacing: 0.5px;">Enseignant</div>
+                <div class="fw-semibold" style="color: #1B2A4A; font-size: 14px;">
+                  {{ s.enseignant?.nom }} {{ s.enseignant?.prenom }}
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="d-flex gap-2 mt-3">
+              <span class="badge"
+                    style="background-color: #EBF8FF; color: #2B6CB0; font-size: 12px; padding: 5px 10px; border-radius: 8px;">
+                {{ s.specialite }}
+              </span>
+              <span class="badge"
+                    style="background-color: #F0FFF4; color: #276749; font-size: 12px; padding: 5px 10px; border-radius: 8px;">
+              
+              </span>
+            </div>
+          </div>
+
+         
+          <div class="card-footer bg-white d-flex gap-2 px-3 py-2"
+               style="border-top: 1px solid #EDF2F7;">
+            <button class="btn btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-1"
+                    style="background-color: #EBF8FF; color: #2B6CB0; border-radius: 8px; font-size: 13px; border: none;"
+                    (click)="modifierSeance(s)">
+              <svg width="13" height="13" fill="#2B6CB0" viewBox="0 0 24 24">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              Modifier
+            </button>
+            <button class="btn btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-1"
+                    style="background-color: #FFF5F5; color: #C53030; border-radius: 8px; font-size: 13px; border: none;"
+                    (click)="supprimerSeance(s.id)">
+              <svg width="13" height="13" fill="#C53030" viewBox="0 0 24 24">
+                <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+              </svg>
+              Supprimer
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="modalOuvert"
+     style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1050;
+            display:flex;align-items:center;justify-content:center;">
+  <div class="bg-white p-4"
+       style="width:100%;max-width:520px;border-radius:20px;
+              box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+
+ 
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h5 class="fw-bold mb-0" style="color:#1B2A4A;">
+          {{ seanceSelectionnee ? 'Modifier la séance' : 'Nouvelle séance' }}
+        </h5>
+        <small class="text-muted">Remplissez les informations ci-dessous</small>
+      </div>
+      <button class="btn btn-sm"
+              style="background:#F7FAFC;border-radius:8px;border:none;"
+              (click)="fermerModal()">
+        <svg width="16" height="16" fill="#718096" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <form (ngSubmit)="sauvegarder()" #modalForm="ngForm">
+      <div class="row g-3">
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Jour</label>
+          <select class="form-select" style="border-color:#BEE3F8;border-radius:10px;"
+                  [(ngModel)]="form.jour" name="jour" required>
+            <option *ngFor="let j of jours" [value]="j">{{ j }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Spécialité</label>
+          <select class="form-select" style="border-color:#BEE3F8;border-radius:10px;"
+                  [(ngModel)]="form.specialite" name="specialite" required>
+            <option value="GDIL">GDIL</option>
+            <option value="RSI">Reseaux</option>
+           
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Heure début</label>
+          <input type="time" class="form-control"
+                 style="border-color:#BEE3F8;border-radius:10px;"
+                 [(ngModel)]="form.heure_debut" name="heure_debut" required/>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Heure fin</label>
+          <input type="time" class="form-control"
+                 style="border-color:#BEE3F8;border-radius:10px;"
+                 [(ngModel)]="form.heure_fin" name="heure_fin" required/>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Cours</label>
+          <select class="form-select" style="border-color:#BEE3F8;border-radius:10px;"
+                  [(ngModel)]="form.cours_id" name="cours_id" required>
+            <option *ngFor="let c of cours" [value]="c.id">{{ c.intitule }}</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Enseignant</label>
+          <select class="form-select" style="border-color:#BEE3F8;border-radius:10px;"
+                  [(ngModel)]="form.enseignant_id" name="enseignant_id" required>
+            <option *ngFor="let e of enseignants" [value]="e.id">
+              {{ e.nom }} {{ e.prenom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold" style="color:#1B2A4A;font-size:14px;">Semaine</label>
+          <input type="number" class="form-control"
+                 style="border-color:#BEE3F8;border-radius:10px;"
+                 [(ngModel)]="form.semaine_id" name="semaine_id" required/>
+        </div>
+
+      </div>
+
+      <!-- Alerte erreur -->
+      <div *ngIf="erreur" class="alert alert-danger mt-3 py-2" style="font-size:13px;border-radius:10px;">
+        {{ erreur }}
+      </div>
+
+      <!-- Boutons modal -->
+      <div class="d-flex gap-2 mt-4">
+        <button type="button" class="btn flex-grow-1 fw-semibold"
+                style="background:#F7FAFC;color:#4A5568;border-radius:10px;border:none;padding:11px;"
+                (click)="fermerModal()">
+          Annuler
+        </button>
+        <button type="submit" class="btn flex-grow-1 fw-bold text-white"
+                style="background-color:#2B6CB0;border-radius:10px;border:none;padding:11px;">
+          {{ seanceSelectionnee ? 'Modifier' : 'Créer la séance' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

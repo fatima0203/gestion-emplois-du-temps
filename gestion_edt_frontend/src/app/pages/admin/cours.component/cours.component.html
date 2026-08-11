@@ -1,0 +1,240 @@
+<div class="d-flex">
+
+
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="fw-bold fs-5">
+        <span style="color: #63B3ED;">Gestion</span>
+        <span class="text-white">EDT</span>
+      </span>
+      <div class="mt-1">
+        <span class="badge"
+              style="background-color: #F6AD55; color: #1B2A4A; font-size: 11px;">
+          Admin
+        </span>
+      </div>
+    </div>
+
+    <ul class="nav flex-column gap-1 flex-grow-1">
+      <li class="nav-item">
+        <a class="sidebar-nav-link" href="/admin/edt">
+          <svg width="18" height="18" fill="rgba(255,255,255,0.5)" viewBox="0 0 24 24">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+          </svg>
+          <span>Séances</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-nav-link active">
+          <svg width="18" height="18" fill="#63B3ED" viewBox="0 0 24 24">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <span class="text-white">Cours</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-nav-link" href="/admin/enseignants">
+          <svg width="18" height="18" fill="rgba(255,255,255,0.5)" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+          </svg>
+          <span>Enseignants</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-logout">
+      <button class="logout-btn" (click)="seDeconnecter()">
+        <svg width="18" height="18" fill="#FC8181" viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        Déconnexion
+      </button>
+    </div>
+  </div>
+
+ 
+  <div class="main-content">
+
+   
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h4 class="page-title mb-0">Gestion des cours</h4>
+        <small class="text-muted">Ajoutez, modifiez ou supprimez les cours</small>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="count-badge">{{ cours.length }} cours</span>
+        <button class="btn-add" (click)="ouvrirModal()">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Nouveau cours
+        </button>
+      </div>
+    </div>
+
+   
+    <!-- <div *ngIf="chargement" class="loading-state">
+      <div class="spinner-border" style="color: #2B6CB0;"></div>
+      <p class="mt-2 text-muted small">Chargement des cours...</p>
+    </div>
+
+   
+    <div *ngIf="cours.length === 0 && !chargement" class="empty-state">
+      <svg width="52" height="52" fill="#CBD5E0" viewBox="0 0 24 24" class="mb-3">
+        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+      <p class="fw-semibold mb-1">Aucun cours trouvé</p>
+      <small>Cliquez sur "Nouveau cours" pour en ajouter un</small>
+    </div> -->
+
+
+    <div class="row g-3" *ngIf="!chargement">
+      <div class="col-md-6 col-xl-4" *ngFor="let c of cours">
+        <div class="cours-card card d-flex flex-column">
+
+       
+          <div class="cours-card-header">
+            <div class="cours-initiale">
+              {{ c.intitule.charAt(0) }}
+            </div>
+            <span class="cours-intitule">{{ c.intitule }}</span>
+            <span class="cours-credit-badge">{{ c.credits }} cr.</span>
+          </div>
+
+          
+          <div class="cours-card-body">
+
+           
+            <div class="mb-3">
+              <div class="info-label">Description</div>
+              <p class="cours-description mb-0">
+                {{ c.description || 'Aucune description disponible' }}
+              </p>
+            </div>
+
+            
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:32px;height:32px;border-radius:6px;
+                          background:#EBF8FF;display:flex;align-items:center;
+                          justify-content:center;flex-shrink:0;">
+                <svg width="16" height="16" fill="#2B6CB0" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Crédits</div>
+                <div class="info-value">{{ c.credits }} crédit(s)</div>
+              </div>
+            </div>
+
+          </div>
+
+         
+          <div class="cours-card-footer mt-auto">
+            <button class="btn-modifier" (click)="modifierCours(c)">
+              <svg width="13" height="13" fill="#2B6CB0" viewBox="0 0 24 24">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              Modifier
+            </button>
+            <button class="btn-supprimer" (click)="supprimerCours(c.id)">
+              <svg width="13" height="13" fill="#C53030" viewBox="0 0 24 24">
+                <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+              </svg>
+              Supprimer
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="modalOuvert" class="modal-overlay">
+  <div class="modal-box">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h5 class="modal-title mb-0">
+          {{ coursSelectionne ? 'Modifier le cours' : 'Nouveau cours' }}
+        </h5>
+        <small class="text-muted">Remplissez les informations ci-dessous</small>
+      </div>
+      <button class="modal-close-btn" (click)="fermerModal()">
+        <svg width="16" height="16" fill="#718096" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <form (ngSubmit)="sauvegarder()" #coursForm="ngForm">
+      <div class="row g-3">
+
+        <div class="col-12">
+          <label class="form-label-modal">Intitulé du cours</label>
+          <input
+            type="text"
+            class="form-control modal-input"
+            placeholder="ex: Développement Web"
+            [(ngModel)]="form.intitule"
+            name="intitule"
+            required/>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-modal">Description</label>
+          <textarea
+            class="form-control modal-input"
+            placeholder="ex: Introduction aux frameworks modernes..."
+            [(ngModel)]="form.description"
+            name="description"
+            rows="3">
+          </textarea>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-modal">Crédits</label>
+          <input
+            type="number"
+            class="form-control modal-input"
+            placeholder="ex: 4"
+            [(ngModel)]="form.credits"
+            name="credits"
+            min="1"
+            max="10"
+            required/>
+        </div>
+
+      </div>
+
+      <div *ngIf="erreur"
+           class="alert alert-danger mt-3 py-2"
+           style="font-size:13px; border-radius:10px;">
+        {{ erreur }}
+      </div>
+
+      <div class="d-flex gap-2 mt-4">
+        <button type="button" class="btn-cancel" (click)="fermerModal()">
+          Annuler
+        </button>
+        <button type="submit" class="btn-save"
+                [disabled]="coursForm.invalid">
+          {{ coursSelectionne ? 'Modifier' : 'Créer le cours' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<div *ngIf="toast.visible" [class]="toast.type === 'success' ? 'toast-success' : 'toast-error'">
+  <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+    <path *ngIf="toast.type === 'success'" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+    <path *ngIf="toast.type === 'error'" d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-7v2h2v-2h-2zm0-8v6h2V7h-2z"/>
+  </svg>
+  {{ toast.message }}
+</div>

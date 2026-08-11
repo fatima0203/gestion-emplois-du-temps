@@ -1,0 +1,243 @@
+<div class="d-flex" style="min-height: 100vh; background-color: #F0F4F8;">
+
+
+  <div class="d-flex flex-column p-3"
+       style="width: 240px; background-color: #1B2A4A; min-height: 100vh; flex-shrink: 0;">
+
+  
+    <div class="text-center py-3 mb-4"
+         style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <span class="fw-bold fs-5">
+        <span style="color: #63B3ED;">Gestion</span>
+        <span class="text-white">EDT</span>
+      </span>
+      <div class="mt-1">
+        <span class="badge"
+              style="background-color: #68D391; color: #1B2A4A; font-size: 11px;">
+          Étudiant
+        </span>
+      </div>
+    </div>
+
+   
+    <div class="px-2 mb-4 text-center">
+      <div class="d-flex align-items-center justify-content-center mb-2">
+        <div class="rounded-circle d-flex align-items-center justify-content-center"
+             style="width:52px;height:52px;background:rgba(99,179,237,0.15);">
+          <svg width="26" height="26" fill="#63B3ED" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="text-white fw-semibold" style="font-size: 14px;">
+        {{ user?.nom }} {{ user?.prenom }}
+      </div>
+      <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 4px;">
+        {{ user?.etudiant?.niveau }} — {{ user?.etudiant?.specialite }}
+      </div>
+      <div style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 2px;">
+        {{ user?.etudiant?.numero_etudiant }}
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <ul class="nav flex-column gap-1 flex-grow-1">
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2"
+           style="background: rgba(99,179,237,0.15);">
+          <svg width="18" height="18" fill="#63B3ED" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="text-white" style="font-size: 14px;">Mon emploi du temps</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Déconnexion -->
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+      <button class="btn w-100 d-flex align-items-center gap-2 px-3 py-2"
+              style="background: rgba(255,255,255,0.05); border: none; border-radius: 8px;"
+              (click)="seDeconnecter()">
+        <svg width="18" height="18" fill="#FC8181" viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        <span style="color: #FC8181; font-size: 14px;">Déconnexion</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-grow-1 p-4">
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h4 class="fw-bold mb-0" style="color: #1B2A4A;">Mon emploi du temps</h4>
+        <small class="text-muted">
+          Spécialité : <strong>{{ user?.etudiant?.specialite }}</strong>
+          — Année : 2025-2026
+        </small>
+      </div>
+      
+
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge"
+              style="background-color: #EBF8FF; color: #2B6CB0; font-size: 13px; padding: 8px 16px; border-radius: 20px;">
+          <svg width="14" height="14" fill="#2B6CB0" viewBox="0 0 24 24" class="me-1">
+            <path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-7v2h2v-2h-2zm0-8v6h2V7h-2z"/>
+          </svg>
+          Consultation uniquement
+        </span>
+      </div>
+    </div>
+
+    
+    <div class="card border-0 mb-4 p-3 d-flex flex-row align-items-center gap-3"
+         style="border-radius: 14px; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+
+      <div class="d-flex align-items-center gap-2">
+        <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+          <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span class="fw-semibold" style="color: #1B2A4A; font-size: 14px;">Semaine :</span>
+      </div>
+      <!-- <input
+        type="number"
+        class="form-control form-control-sm"
+        style="width: 100px; border-color: #BEE3F8; border-radius: 8px;"
+        placeholder="ex: 3"
+        [(ngModel)]="filtre_semaine"
+        (input)="chargerSeances()"
+        min="1"/> -->
+
+      <button class="btn btn-sm"
+              style="background:#F7FAFC;color:#4A5568;border-radius:8px;
+                     border:1px solid #E2E8F0;font-size:13px;"
+              (click)="reinitialiserFiltre()">
+        Toutes les semaines
+      </button>
+
+   
+      <div class="ms-auto">
+        <span class="badge"
+              style="background-color:#EBF8FF;color:#2B6CB0;font-size:13px;
+                     padding:6px 14px;border-radius:20px;">
+          {{ seances.length }} séance(s)
+        </span>
+      </div>
+    </div>
+
+
+    <div *ngIf="seances.length === 0 && !chargement"
+         class="text-center py-5"
+         style="color: #A0AEC0;">
+      <svg width="52" height="52" fill="#CBD5E0" viewBox="0 0 24 24" class="mb-3">
+        <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      <p class="fw-semibold mb-1">Aucune séance trouvée</p>
+      <small>Aucune séance n'est programmée pour votre spécialité</small>
+    </div>
+
+    <!-- Chargement -->
+    <!-- <div *ngIf="chargement" class="text-center py-5">
+      <div class="spinner-border" style="color: #2B6CB0;"></div>
+      <p class="mt-2 text-muted small">Chargement des séances...</p>
+    </div> -->
+
+  
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-4" *ngFor="let s of seances">
+        <div class="card border-0 h-100"
+             style="border-radius: 16px;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+                    overflow: hidden;">
+
+        
+          <div class="d-flex align-items-center justify-content-between px-3 py-2"
+               [ngStyle]="{'background-color': couleurJour(s.jour)}">
+            <span class="fw-bold text-white" style="font-size: 13px;">
+              {{ s.jour }}
+            </span>
+            <span class="text-white" style="font-size: 12px; opacity: 0.85;">
+              {{ s.heure_debut }} - {{ s.heure_fin }}
+            </span>
+          </div>
+
+          
+          <div class="card-body p-3">
+
+      
+            <div class="d-flex align-items-start gap-2 mb-3">
+              <div class="d-flex align-items-center justify-content-center rounded"
+                   style="width:32px;height:32px;background:#EBF8FF;flex-shrink:0;">
+                <svg width="16" height="16" fill="#2B6CB0" viewBox="0 0 24 24">
+                  <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#A0AEC0;text-transform:uppercase;letter-spacing:0.5px;">
+                  Cours
+                </div>
+                <div class="fw-bold" style="color:#1B2A4A;font-size:15px;">
+                  {{ s.cours?.intitule }}
+                </div>
+              </div>
+            </div>
+
+           
+            <div class="d-flex align-items-start gap-2 mb-3">
+              <div class="d-flex align-items-center justify-content-center rounded"
+                   style="width:32px;height:32px;background:#F0FFF4;flex-shrink:0;">
+                <svg width="16" height="16" fill="#276749" viewBox="0 0 24 24">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#A0AEC0;text-transform:uppercase;letter-spacing:0.5px;">
+                  Enseignant
+                </div>
+                <div class="fw-semibold" style="color:#1B2A4A;font-size:14px;">
+                  {{ s.enseignant?.nom }} {{ s.enseignant?.prenom }}
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-2 mb-3">
+              <div class="d-flex align-items-center justify-content-center rounded"
+                   style="width:32px;height:32px;background:#FFFFF0;flex-shrink:0;">
+                <svg width="16" height="16" fill="#744210" viewBox="0 0 24 24">
+                  <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#A0AEC0;text-transform:uppercase;letter-spacing:0.5px;">
+                  Semaine
+                </div>
+                <div class="fw-semibold" style="color:#1B2A4A;font-size:14px;">
+                  Semaine {{ s.semaine?.numero }}
+                  <span style="color:#A0AEC0;font-size:12px;">
+                    — {{ s.semaine?.date_debut }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-2">
+              <span class="badge"
+                    style="background:#EBF8FF;color:#2B6CB0;
+                           font-size:12px;padding:5px 10px;border-radius:8px;">
+                {{ s.specialite }}
+              </span>
+              <span class="badge"
+                    style="background:#F0FFF4;color:#276749;
+                           font-size:12px;padding:5px 10px;border-radius:8px;">
+                Sem. {{ s.semaine?.numero }}
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

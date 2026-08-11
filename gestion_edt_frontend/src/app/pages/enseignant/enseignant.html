@@ -1,0 +1,154 @@
+<div class="d-flex">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="fw-bold fs-5">
+        <span style="color: #63B3ED;">Gestion</span>
+        <span class="text-white">EDT</span>
+      </span>
+      <div class="mt-1">
+        <span class="badge"
+              style="background-color: #F6AD55; color: #1B2A4A; font-size: 11px;">
+          Emploi du temps
+        </span>
+      </div>
+    </div>
+
+    <ul class="nav flex-column gap-1 flex-grow-1">
+      <li class="nav-item">
+        <a class="sidebar-nav-link active">
+          <svg width="18" height="18" fill="#63B3ED" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="text-white">Toutes les séances</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-logout">
+      <a class="logout-btn" routerLink="/login">
+        <svg width="18" height="18" fill="#FC8181" viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        Retour accueil
+      </a>
+    </div>
+  </div>
+
+
+  <div class="main-content">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h4 class="page-title mb-0">Emploi du temps</h4>
+        <small class="text-muted">Toutes les séances programmées</small>
+      </div>
+      <span class="count-badge">{{ seancesFiltrees.length }} séance(s)</span>
+    </div>
+
+    
+      <div class="filter-card mb-4">
+        <div class="d-flex align-items-center gap-2">
+          <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="filter-label">Semaine :</span>
+        </div>
+       
+        <button class="btn btn-sm btn-reset" (click)="reinitialiserFiltre()">
+          Toutes les semaines
+        </button>
+      </div>
+
+      <div *ngIf="seancesFiltrees.length === 0" class="empty-state">
+        <svg width="52" height="52" fill="#CBD5E0" viewBox="0 0 24 24" class="mb-3">
+          <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <p class="fw-semibold mb-1">Aucune séance trouvée</p>
+        <small>Aucune séance n'est programmée pour cette semaine</small>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-xl-4" *ngFor="let s of seancesFiltrees">
+          <div class="seance-card card">
+
+           
+            <div class="seance-card-header"
+                 [ngStyle]="{'background-color': couleurJour(s.jour)}">
+              <span class="fw-bold text-white" style="font-size: 13px;">{{ s.jour }}</span>
+              <span class="text-white" style="font-size: 12px; opacity: 0.85;">
+                {{ s.heure_debut }} - {{ s.heure_fin }}
+              </span>
+            </div>
+
+         
+            <div class="seance-card-body">
+
+              <div class="d-flex align-items-start gap-2 mb-3">
+                <div class="info-icon-box" style="background: #FAF5FF;">
+                  <svg width="16" height="16" fill="#6B46C1" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-label">Enseignant</div>
+                  <div class="info-value">{{ s.enseignant?.nom }} {{ s.enseignant?.prenom }}</div>
+                </div>
+              </div>
+
+             
+              <div class="d-flex align-items-start gap-2 mb-3">
+                <div class="info-icon-box" style="background: #EBF8FF;">
+                  <svg width="16" height="16" fill="#2B6CB0" viewBox="0 0 24 24">
+                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-label">Cours</div>
+                  <div class="info-value" style="font-size: 15px;">{{ s.cours?.intitule }}</div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start gap-2 mb-3">
+                <div class="info-icon-box" style="background: #F0FFF4;">
+                  <svg width="16" height="16" fill="#276749" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-label">Spécialité</div>
+                  <div class="info-value">{{ s.specialite }}</div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start gap-2 mb-3">
+                <div class="info-icon-box" style="background: #FFFFF0;">
+                  <svg width="16" height="16" fill="#744210" viewBox="0 0 24 24">
+                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-label">Semaine</div>
+                  <div class="info-value">
+                    Semaine {{ s.semaine?.numero }}
+                    <span class="text-muted" style="font-size:12px;">
+                      — {{ s.semaine?.date_debut }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex gap-2 mt-2">
+                <span class="badge-specialite">{{ s.specialite }}</span>
+                <span class="badge-semaine">Sem. {{ s.semaine?.numero }}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- </div> -->

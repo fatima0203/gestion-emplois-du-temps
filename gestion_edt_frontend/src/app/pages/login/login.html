@@ -1,0 +1,218 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1B2A4A;">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold fs-4" href="#">
+      <span style="color: #4A90D9;">Gestion</span>
+      <span class="text-white">EDT</span>
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white-50" href="#">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white-50" href="#">À propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white-50" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white-50" routerLink="/enseignant">Espace Enseignant</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="
+  min-height: calc(100vh - 56px);
+  background: linear-gradient(135deg, #1B2A4A 0%, #2C5282 50%, #2B6CB0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;">
+
+  <div class="row w-100" style="max-width: 960px;">
+
+  
+    <div class="col-lg-5 d-none d-lg-flex flex-column justify-content-center pe-5">
+      <h1 class="fw-bold text-white mb-3" style="font-size: 2rem; line-height: 1.3;">
+        Bienvenue sur la plateforme
+        <span style="color: #63B3ED;">GestionEDT</span>
+      </h1>
+      <p style="color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.7;">
+        Gérez et consultez les emplois du temps de l'Université Gaston Berger en toute simplicité.
+      </p>
+      <ul class="mt-4 ps-0" style="list-style: none;">
+        <li class="d-flex align-items-center mb-3">
+          <span class="me-3 d-flex align-items-center justify-content-center rounded-circle"
+                style="width:36px;height:36px;background:rgba(99,179,237,0.15);flex-shrink:0;">
+            <svg width="16" height="16" fill="#63B3ED" viewBox="0 0 24 24">
+              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+            </svg>
+          </span>
+          <span style="color:rgba(255,255,255,0.7);font-size:14px;">
+            Consultation des séances de cours
+          </span>
+        </li>
+        <li class="d-flex align-items-center mb-3">
+          <span class="me-3 d-flex align-items-center justify-content-center rounded-circle"
+                style="width:36px;height:36px;background:rgba(99,179,237,0.15);flex-shrink:0;">
+            <svg width="16" height="16" fill="#63B3ED" viewBox="0 0 24 24">
+              <path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </span>
+          <span style="color:rgba(255,255,255,0.7);font-size:14px;">
+            Gestion facile des cours
+          </span>
+        </li>
+        <li class="d-flex align-items-center mb-3">
+          <span class="me-3 d-flex align-items-center justify-content-center rounded-circle"
+                style="width:36px;height:36px;background:rgba(99,179,237,0.15);flex-shrink:0;">
+            <svg width="16" height="16" fill="#63B3ED" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </span>
+          <span style="color:rgba(255,255,255,0.7);font-size:14px;">
+            Accessible aux enseignants
+          </span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <small style="color:rgba(255,255,255,0.4);">
+          Université Gaston Berger — M1 GDIL 2026
+        </small>
+      </div>
+    </div>
+
+   
+    <div class="col-lg-7 col-12">
+      <div class="bg-white p-4 p-md-5"
+           style="border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+
+        
+        <div class="text-center mb-4">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+               style="width:64px;height:64px;background:#EBF8FF;">
+            <svg width="28" height="28" fill="#2B6CB0" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+            </svg>
+          </div>
+          <h4 class="fw-bold mb-1" style="color:#1B2A4A;">Connexion</h4>
+          <p class="text-muted mb-0" style="font-size:14px;">
+            Entrez vos identifiants pour accéder à votre espace
+          </p>
+        </div>
+
+        
+        <div *ngIf="erreur"
+             class="alert alert-danger d-flex align-items-center gap-2 mb-4"
+             style="font-size:14px;border-radius:10px;">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-7v2h2v-2h-2zm0-8v6h2V7h-2z"/>
+          </svg>
+          {{ erreur }}
+        </div>
+
+        <form (ngSubmit)="seConnecter()" #loginForm="ngForm" novalidate>
+
+         
+          <div class="mb-4">
+            <label class="form-label fw-semibold d-block mb-2"
+                   style="color:#1B2A4A;font-size:15px;">
+              Adresse email
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"
+                    style="background:#EBF8FF;border-color:#BEE3F8;border-right:none;">
+                <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+                  <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </span>
+              <input
+                type="email"
+                class="form-control"
+                style="border-color:#BEE3F8;border-left:none;font-size:15px;padding:12px 16px;"
+                placeholder="ex: xxxxxxxxxx@ugb.edu.sn"
+                [(ngModel)]="email"
+                name="email"
+                #emailField="ngModel"
+                required
+                email/>
+            </div>
+            <div *ngIf="emailField.invalid && emailField.touched"
+                 class="text-danger mt-1" style="font-size:13px;">
+              Veuillez entrer un email valide.
+            </div>
+          </div>
+>
+          <div class="mb-4">
+            <label class="form-label fw-semibold d-block mb-2"
+                   style="color:#1B2A4A;font-size:15px;">
+              Mot de passe
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"
+                    style="background:#EBF8FF;border-color:#BEE3F8;border-right:none;">
+                <svg width="18" height="18" fill="#2B6CB0" viewBox="0 0 24 24">
+                  <path d="M12 1a5 5 0 015 5v3h1a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2v-9a2 2 0 012-2h1V6a5 5 0 015-5zm0 12a2 2 0 100 4 2 2 0 000-4zm0-10a3 3 0 00-3 3v3h6V6a3 3 0 00-3-3z"/>
+                </svg>
+              </span>
+              <input
+                type="password"
+                class="form-control"
+                style="border-color:#BEE3F8;border-left:none;font-size:15px;padding:12px 16px;"
+                placeholder="••••••••"
+                [(ngModel)]="motDePasse"
+                name="password"
+                #motDePasseField="ngModel"
+                required
+                minlength="6"/>
+            </div>
+            <div *ngIf="motDePasseField.invalid && motDePasseField.touched"
+                 class="text-danger mt-1" style="font-size:13px;">
+              Le mot de passe doit contenir au moins 10 caractères.
+            </div>
+          </div>
+
+      
+          <div class="d-grid mt-2">
+            <button
+              type="submit"
+              class="btn fw-bold text-white py-3"
+              style="background-color:#2B6CB0;border-radius:12px;font-size:16px;border:none;
+                     transition:background 0.2s;"
+              [disabled]="chargement || loginForm.invalid">
+              <span *ngIf="!chargement">
+                Se connecter
+              </span>
+              <span *ngIf="chargement">
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Connexion en cours...
+              </span>
+            </button>
+          </div>
+
+        </form>
+
+      
+        <div class="text-center mt-4 pt-3"
+             style="border-top:1px solid #EDF2F7;">
+          <small class="text-muted" style="font-size:13px;">
+            Plateforme réservée aux membres de l'UGB
+          </small>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<hr>
+
+<router-outlet></router-outlet>

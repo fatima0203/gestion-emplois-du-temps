@@ -1,0 +1,26 @@
+table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+
+.modal {
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+table {
+  background: white;
+}
