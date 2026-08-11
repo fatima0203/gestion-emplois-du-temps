@@ -58,7 +58,7 @@ L'administrateur dispose d'un espace de gestion permettant de :
 
 * Laragon
 
-## 🏗️ Architecture
+## Architecture
 
 Le projet est organisé en deux parties :
 
@@ -74,7 +74,7 @@ gestion-emplois-du-temps/
 
 Angular assure l'interface utilisateur et communique avec l'API développée avec Laravel.
 
-## 🎯 Objectif du projet
+## Objectif du projet
 
 L'objectif est de proposer une solution permettant de simplifier la consultation et l'administration des emplois du temps universitaires tout en proposant des fonctionnalités adaptées aux différents profils d'utilisateurs.
 
@@ -82,6 +82,6 @@ L'objectif est de proposer une solution permettant de simplifier la consultation
 
 Des captures d'écran de l'application sont disponibles dans la documentation du projet.
 
-## ⚠️ Projet académique
+##  Projet académique
 
 Ce projet a été réalisé dans un cadre académique à des fins d'apprentissage et de mise en pratique du développement web full-stack.
